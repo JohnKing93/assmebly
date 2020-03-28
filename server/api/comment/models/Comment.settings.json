@@ -1,0 +1,43 @@
+{
+  "connection": "default",
+  "collectionName": "comments",
+  "info": {
+    "name": "comment",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "creator": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "project": {
+      "model": "project",
+      "via": "comments"
+    },
+    "replyTo": {
+      "model": "comment",
+      "via": "replies"
+    },
+    "replies": {
+      "collection": "comment",
+      "via": "replyTo"
+    },
+    "idea": {
+      "model": "idea",
+      "via": "comments"
+    },
+    "hidden": {
+      "type": "boolean",
+      "required": true
+    },
+    "comment": {
+      "required": true,
+      "type": "string"
+    }
+  }
+}

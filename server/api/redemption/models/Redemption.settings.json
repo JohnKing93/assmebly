@@ -1,0 +1,36 @@
+{
+  "connection": "default",
+  "collectionName": "redemptions",
+  "info": {
+    "name": "redemption",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "incentive": {
+      "model": "incentive",
+      "via": "redemptions"
+    },
+    "redeemer": {
+      "model": "user",
+      "via": "redemptions",
+      "plugin": "users-permissions"
+    },
+    "status": {
+      "enum": [
+        "Pending",
+        "Approved",
+        "Rejected"
+      ],
+      "type": "enumeration",
+      "required": true
+    },
+    "reason": {
+      "type": "string"
+    }
+  }
+}

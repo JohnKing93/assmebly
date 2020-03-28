@@ -1,0 +1,47 @@
+{
+  "connection": "default",
+  "collectionName": "projects",
+  "info": {
+    "name": "project",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "sponsor": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "summary": {
+      "required": true,
+      "type": "string"
+    },
+    "description": {
+      "required": true,
+      "type": "text"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "project"
+    },
+    "positions": {
+      "collection": "position",
+      "via": "project"
+    },
+    "members": {
+      "collection": "member",
+      "via": "project"
+    },
+    "ideas": {
+      "collection": "idea",
+      "via": "project"
+    },
+    "undefined": {
+      "collection": "timesheet",
+      "via": "project"
+    }
+  }
+}

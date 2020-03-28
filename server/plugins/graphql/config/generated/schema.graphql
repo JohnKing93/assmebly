@@ -1,0 +1,972 @@
+type Application {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  position: Position
+  applicant: UsersPermissionsUser
+  member: Member
+  status: ENUM_APPLICATION_STATUS!
+  reason: String!
+}
+
+input ApplicationInput {
+  position: ID
+  applicant: ID
+  member: ID
+  status: ENUM_APPLICATION_STATUS!
+  reason: String!
+}
+
+type Comment {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  creator: UsersPermissionsUser
+  project: Project
+  replyTo: Comment
+  idea: Idea
+  hidden: Boolean!
+  comment: String!
+  replies(sort: String, limit: Int, start: Int, where: JSON): [Comment]
+}
+
+input CommentInput {
+  creator: ID
+  project: ID
+  replyTo: ID
+  replies: [ID]
+  idea: ID
+  hidden: Boolean!
+  comment: String!
+}
+
+input createApplicationInput {
+  data: ApplicationInput
+}
+
+type createApplicationPayload {
+  application: Application
+}
+
+input createCommentInput {
+  data: CommentInput
+}
+
+type createCommentPayload {
+  comment: Comment
+}
+
+input createIdeaInput {
+  data: IdeaInput
+}
+
+type createIdeaPayload {
+  idea: Idea
+}
+
+input createIncentiveInput {
+  data: IncentiveInput
+}
+
+type createIncentivePayload {
+  incentive: Incentive
+}
+
+input createInterestInput {
+  data: InterestInput
+}
+
+type createInterestPayload {
+  interest: Interest
+}
+
+input createMemberInput {
+  data: MemberInput
+}
+
+type createMemberPayload {
+  member: Member
+}
+
+input createPositionInput {
+  data: PositionInput
+}
+
+type createPositionPayload {
+  position: Position
+}
+
+input createProjectInput {
+  data: ProjectInput
+}
+
+type createProjectPayload {
+  project: Project
+}
+
+input createRedemptionInput {
+  data: RedemptionInput
+}
+
+type createRedemptionPayload {
+  redemption: Redemption
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createTestInput {
+  data: TestInput
+}
+
+type createTestPayload {
+  test: Test
+}
+
+input createTimesheetInput {
+  data: TimesheetInput
+}
+
+type createTimesheetPayload {
+  timesheet: Timesheet
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input createVoteInput {
+  data: VoteInput
+}
+
+type createVotePayload {
+  vote: Vote
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteApplicationInput {
+  where: InputID
+}
+
+type deleteApplicationPayload {
+  application: Application
+}
+
+input deleteCommentInput {
+  where: InputID
+}
+
+type deleteCommentPayload {
+  comment: Comment
+}
+
+input deleteIdeaInput {
+  where: InputID
+}
+
+type deleteIdeaPayload {
+  idea: Idea
+}
+
+input deleteIncentiveInput {
+  where: InputID
+}
+
+type deleteIncentivePayload {
+  incentive: Incentive
+}
+
+input deleteInterestInput {
+  where: InputID
+}
+
+type deleteInterestPayload {
+  interest: Interest
+}
+
+input deleteMemberInput {
+  where: InputID
+}
+
+type deleteMemberPayload {
+  member: Member
+}
+
+input deletePositionInput {
+  where: InputID
+}
+
+type deletePositionPayload {
+  position: Position
+}
+
+input deleteProjectInput {
+  where: InputID
+}
+
+type deleteProjectPayload {
+  project: Project
+}
+
+input deleteRedemptionInput {
+  where: InputID
+}
+
+type deleteRedemptionPayload {
+  redemption: Redemption
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteTestInput {
+  where: InputID
+}
+
+type deleteTestPayload {
+  test: Test
+}
+
+input deleteTimesheetInput {
+  where: InputID
+}
+
+type deleteTimesheetPayload {
+  timesheet: Timesheet
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteVoteInput {
+  where: InputID
+}
+
+type deleteVotePayload {
+  vote: Vote
+}
+
+input editApplicationInput {
+  position: ID
+  applicant: ID
+  member: ID
+  status: ENUM_APPLICATION_STATUS
+  reason: String
+}
+
+input editCommentInput {
+  creator: ID
+  project: ID
+  replyTo: ID
+  replies: [ID]
+  idea: ID
+  hidden: Boolean
+  comment: String
+}
+
+input editFileInput {
+  name: String
+  hash: String
+  sha256: String
+  ext: String
+  mime: String
+  size: String
+  url: String
+  provider: String
+  public_id: String
+  related: [ID]
+}
+
+input editIdeaInput {
+  summary: String
+  description: String
+  creator: ID
+  votes: [ID]
+  comments: [ID]
+  project: ID
+}
+
+input editIncentiveInput {
+  summary: String
+  description: String
+  hours: Int
+  active: Boolean
+  redemptions: [ID]
+}
+
+input editInterestInput {
+  summary: String
+  interested: ID
+  positions: [ID]
+}
+
+input editMemberInput {
+  user: ID
+  status: ENUM_MEMBER_STATUS
+  positions: [ID]
+  project: ID
+}
+
+input editPositionInput {
+  summary: String
+  description: String
+  active: Boolean
+  project: ID
+  timeCommitment: Int
+  requirements: [ID]
+  members: [ID]
+  applications: [ID]
+}
+
+input editProjectInput {
+  sponsor: ID
+  summary: String
+  description: String
+  comments: [ID]
+  positions: [ID]
+  members: [ID]
+  ideas: [ID]
+  undefined: [ID]
+}
+
+input editRedemptionInput {
+  incentive: ID
+  redeemer: ID
+  status: ENUM_REDEMPTION_STATUS
+  reason: String
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input editTestInput {
+  test: String
+}
+
+input editTimesheetInput {
+  user: ID
+  project: ID
+  sunday: Int
+  monday: Int
+  tuesday: Int
+  wednesday: Int
+  thursday: Int
+  friday: Int
+  saturday: Int
+  week: DateTime
+  status: ENUM_TIMESHEET_STATUS
+  reason: String
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  interests: [ID]
+  applications: [ID]
+  redemptions: [ID]
+  firstName: String
+  lastName: String
+}
+
+input editVoteInput {
+  vote: Boolean
+  voter: ID
+  idea: ID
+}
+
+enum ENUM_APPLICATION_STATUS {
+  Pending
+  Approved
+  Rejected
+}
+
+enum ENUM_MEMBER_STATUS {
+  Active
+  Deactivated
+  Retired
+}
+
+enum ENUM_REDEMPTION_STATUS {
+  Pending
+  Approved
+  Rejected
+}
+
+enum ENUM_TIMESHEET_STATUS {
+  Pending
+  Approved
+  Rejected
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related: [ID]
+}
+
+type Idea {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  summary: String!
+  description: String!
+  creator: UsersPermissionsUser
+  project: Project
+  votes(sort: String, limit: Int, start: Int, where: JSON): [Vote]
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comment]
+}
+
+input IdeaInput {
+  summary: String!
+  description: String!
+  creator: ID
+  votes: [ID]
+  comments: [ID]
+  project: ID
+}
+
+type Incentive {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  summary: String!
+  description: String!
+  hours: Int!
+  active: Boolean!
+  redemptions(sort: String, limit: Int, start: Int, where: JSON): [Redemption]
+}
+
+input IncentiveInput {
+  summary: String!
+  description: String!
+  hours: Int!
+  active: Boolean!
+  redemptions: [ID]
+}
+
+input InputID {
+  id: ID!
+}
+
+type Interest {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  summary: String!
+  interested: UsersPermissionsUser
+  positions(sort: String, limit: Int, start: Int, where: JSON): [Position]
+}
+
+input InterestInput {
+  summary: String!
+  interested: ID
+  positions: [ID]
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+type Member {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  user: UsersPermissionsUser
+  status: ENUM_MEMBER_STATUS!
+  project: Project
+  positions(sort: String, limit: Int, start: Int, where: JSON): [Position]
+}
+
+input MemberInput {
+  user: ID
+  status: ENUM_MEMBER_STATUS!
+  positions: [ID]
+  project: ID
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Application | createApplicationPayload | updateApplicationPayload | deleteApplicationPayload | Comment | createCommentPayload | updateCommentPayload | deleteCommentPayload | Idea | createIdeaPayload | updateIdeaPayload | deleteIdeaPayload | Interest | createInterestPayload | updateInterestPayload | deleteInterestPayload | Member | createMemberPayload | updateMemberPayload | deleteMemberPayload | Position | createPositionPayload | updatePositionPayload | deletePositionPayload | Project | createProjectPayload | updateProjectPayload | deleteProjectPayload | Redemption | createRedemptionPayload | updateRedemptionPayload | deleteRedemptionPayload | Test | createTestPayload | updateTestPayload | deleteTestPayload | Timesheet | createTimesheetPayload | updateTimesheetPayload | deleteTimesheetPayload | Vote | createVotePayload | updateVotePayload | deleteVotePayload | Incentive | createIncentivePayload | updateIncentivePayload | deleteIncentivePayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+
+type Mutation {
+  createApplication(input: createApplicationInput): createApplicationPayload
+  updateApplication(input: updateApplicationInput): updateApplicationPayload
+  deleteApplication(input: deleteApplicationInput): deleteApplicationPayload
+  createComment(input: createCommentInput): createCommentPayload
+  updateComment(input: updateCommentInput): updateCommentPayload
+  deleteComment(input: deleteCommentInput): deleteCommentPayload
+  createIdea(input: createIdeaInput): createIdeaPayload
+  updateIdea(input: updateIdeaInput): updateIdeaPayload
+  deleteIdea(input: deleteIdeaInput): deleteIdeaPayload
+  createInterest(input: createInterestInput): createInterestPayload
+  updateInterest(input: updateInterestInput): updateInterestPayload
+  deleteInterest(input: deleteInterestInput): deleteInterestPayload
+  createMember(input: createMemberInput): createMemberPayload
+  updateMember(input: updateMemberInput): updateMemberPayload
+  deleteMember(input: deleteMemberInput): deleteMemberPayload
+  createPosition(input: createPositionInput): createPositionPayload
+  updatePosition(input: updatePositionInput): updatePositionPayload
+  deletePosition(input: deletePositionInput): deletePositionPayload
+  createProject(input: createProjectInput): createProjectPayload
+  updateProject(input: updateProjectInput): updateProjectPayload
+  deleteProject(input: deleteProjectInput): deleteProjectPayload
+  createRedemption(input: createRedemptionInput): createRedemptionPayload
+  updateRedemption(input: updateRedemptionInput): updateRedemptionPayload
+  deleteRedemption(input: deleteRedemptionInput): deleteRedemptionPayload
+  createTest(input: createTestInput): createTestPayload
+  updateTest(input: updateTestInput): updateTestPayload
+  deleteTest(input: deleteTestInput): deleteTestPayload
+  createTimesheet(input: createTimesheetInput): createTimesheetPayload
+  updateTimesheet(input: updateTimesheetInput): updateTimesheetPayload
+  deleteTimesheet(input: deleteTimesheetInput): deleteTimesheetPayload
+  createVote(input: createVoteInput): createVotePayload
+  updateVote(input: updateVoteInput): updateVotePayload
+  deleteVote(input: deleteVoteInput): deleteVotePayload
+  createIncentive(input: createIncentiveInput): createIncentivePayload
+  updateIncentive(input: updateIncentiveInput): updateIncentivePayload
+  deleteIncentive(input: deleteIncentiveInput): deleteIncentivePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+type Position {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  summary: String!
+  description: String!
+  active: Boolean!
+  project: Project
+  timeCommitment: Int!
+  requirements(sort: String, limit: Int, start: Int, where: JSON): [Interest]
+  members(sort: String, limit: Int, start: Int, where: JSON): [Member]
+  applications(sort: String, limit: Int, start: Int, where: JSON): [Application]
+}
+
+input PositionInput {
+  summary: String!
+  description: String!
+  active: Boolean!
+  project: ID
+  timeCommitment: Int!
+  requirements: [ID]
+  members: [ID]
+  applications: [ID]
+}
+
+type Project {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  sponsor: UsersPermissionsUser
+  summary: String!
+  description: String!
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comment]
+  positions(sort: String, limit: Int, start: Int, where: JSON): [Position]
+  members(sort: String, limit: Int, start: Int, where: JSON): [Member]
+  ideas(sort: String, limit: Int, start: Int, where: JSON): [Idea]
+  undefined(sort: String, limit: Int, start: Int, where: JSON): [Timesheet]
+}
+
+input ProjectInput {
+  sponsor: ID
+  summary: String!
+  description: String!
+  comments: [ID]
+  positions: [ID]
+  members: [ID]
+  ideas: [ID]
+  undefined: [ID]
+}
+
+type Query {
+  application(id: ID!): Application
+  applications(sort: String, limit: Int, start: Int, where: JSON): [Application]
+  comment(id: ID!): Comment
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comment]
+  idea(id: ID!): Idea
+  ideas(sort: String, limit: Int, start: Int, where: JSON): [Idea]
+  interest(id: ID!): Interest
+  interests(sort: String, limit: Int, start: Int, where: JSON): [Interest]
+  member(id: ID!): Member
+  members(sort: String, limit: Int, start: Int, where: JSON): [Member]
+  position(id: ID!): Position
+  positions(sort: String, limit: Int, start: Int, where: JSON): [Position]
+  project(id: ID!): Project
+  projects(sort: String, limit: Int, start: Int, where: JSON): [Project]
+  redemption(id: ID!): Redemption
+  redemptions(sort: String, limit: Int, start: Int, where: JSON): [Redemption]
+  test(id: ID!): Test
+  tests(sort: String, limit: Int, start: Int, where: JSON): [Test]
+  timesheet(id: ID!): Timesheet
+  timesheets(sort: String, limit: Int, start: Int, where: JSON): [Timesheet]
+  vote(id: ID!): Vote
+  votes(sort: String, limit: Int, start: Int, where: JSON): [Vote]
+  incentive(id: ID!): Incentive
+  incentives(sort: String, limit: Int, start: Int, where: JSON): [Incentive]
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  me: UsersPermissionsMe
+}
+
+type Redemption {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  incentive: Incentive
+  redeemer: UsersPermissionsUser
+  status: ENUM_REDEMPTION_STATUS!
+  reason: String
+}
+
+input RedemptionInput {
+  incentive: ID
+  redeemer: ID
+  status: ENUM_REDEMPTION_STATUS!
+  reason: String
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+type Test {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  test: String
+}
+
+input TestInput {
+  test: String
+}
+
+type Timesheet {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  user: UsersPermissionsUser
+  project: Project
+  sunday: Int
+  monday: Int
+  tuesday: Int
+  wednesday: Int
+  thursday: Int
+  friday: Int
+  saturday: Int
+  week: DateTime!
+  status: ENUM_TIMESHEET_STATUS!
+  reason: String!
+}
+
+input TimesheetInput {
+  user: ID
+  project: ID
+  sunday: Int
+  monday: Int
+  tuesday: Int
+  wednesday: Int
+  thursday: Int
+  friday: Int
+  saturday: Int
+  week: DateTime!
+  status: ENUM_TIMESHEET_STATUS!
+  reason: String!
+}
+
+input updateApplicationInput {
+  where: InputID
+  data: editApplicationInput
+}
+
+type updateApplicationPayload {
+  application: Application
+}
+
+input updateCommentInput {
+  where: InputID
+  data: editCommentInput
+}
+
+type updateCommentPayload {
+  comment: Comment
+}
+
+input updateIdeaInput {
+  where: InputID
+  data: editIdeaInput
+}
+
+type updateIdeaPayload {
+  idea: Idea
+}
+
+input updateIncentiveInput {
+  where: InputID
+  data: editIncentiveInput
+}
+
+type updateIncentivePayload {
+  incentive: Incentive
+}
+
+input updateInterestInput {
+  where: InputID
+  data: editInterestInput
+}
+
+type updateInterestPayload {
+  interest: Interest
+}
+
+input updateMemberInput {
+  where: InputID
+  data: editMemberInput
+}
+
+type updateMemberPayload {
+  member: Member
+}
+
+input updatePositionInput {
+  where: InputID
+  data: editPositionInput
+}
+
+type updatePositionPayload {
+  position: Position
+}
+
+input updateProjectInput {
+  where: InputID
+  data: editProjectInput
+}
+
+type updateProjectPayload {
+  project: Project
+}
+
+input updateRedemptionInput {
+  where: InputID
+  data: editRedemptionInput
+}
+
+type updateRedemptionPayload {
+  redemption: Redemption
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateTestInput {
+  where: InputID
+  data: editTestInput
+}
+
+type updateTestPayload {
+  test: Test
+}
+
+input updateTimesheetInput {
+  where: InputID
+  data: editTimesheetInput
+}
+
+type updateTimesheetPayload {
+  timesheet: Timesheet
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateVoteInput {
+  where: InputID
+  data: editVoteInput
+}
+
+type updateVotePayload {
+  vote: Vote
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  interests: [ID]
+  applications: [ID]
+  redemptions: [ID]
+  firstName: String
+  lastName: String
+}
+
+type UsersPermissionsMe {
+  _id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  firstName: String
+  lastName: String
+  interests(sort: String, limit: Int, start: Int, where: JSON): [Interest]
+  applications(sort: String, limit: Int, start: Int, where: JSON): [Application]
+  redemptions(sort: String, limit: Int, start: Int, where: JSON): [Redemption]
+}
+
+type Vote {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  vote: Boolean!
+  voter: UsersPermissionsUser
+  idea: Idea
+}
+
+input VoteInput {
+  vote: Boolean!
+  voter: ID
+  idea: ID
+}

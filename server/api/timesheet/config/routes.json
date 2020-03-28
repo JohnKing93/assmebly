@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/timesheets",
+      "handler": "Timesheet.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/timesheets/count",
+      "handler": "Timesheet.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/timesheets/:id",
+      "handler": "Timesheet.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/timesheets",
+      "handler": "Timesheet.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/timesheets/:id",
+      "handler": "Timesheet.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/timesheets/:id",
+      "handler": "Timesheet.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

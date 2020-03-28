@@ -1,0 +1,19 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-bookshelf",
+      "settings": {
+        "client": "postgres",
+        "host": "127.0.0.1",
+        "port": 5432,
+        "database": "assemble_new",
+        "username": "work",
+        "password": "480755Jk_"
+      },
+      "options": {
+        "timestamps": true
+      }
+    }
+  }
+}

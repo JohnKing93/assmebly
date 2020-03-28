@@ -1,0 +1,68 @@
+{
+  "connection": "default",
+  "collectionName": "timesheets",
+  "info": {
+    "name": "timesheet",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "user": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "project": {
+      "model": "project"
+    },
+    "sunday": {
+      "type": "integer",
+      "default": "0"
+    },
+    "monday": {
+      "type": "integer",
+      "default": "0"
+    },
+    "tuesday": {
+      "type": "integer",
+      "default": "0"
+    },
+    "wednesday": {
+      "type": "integer",
+      "default": "0"
+    },
+    "thursday": {
+      "type": "integer",
+      "default": "0"
+    },
+    "friday": {
+      "type": "integer",
+      "default": "0"
+    },
+    "saturday": {
+      "type": "integer",
+      "default": "0"
+    },
+    "week": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "enum": [
+        "Pending",
+        "Approved",
+        "Rejected"
+      ],
+      "type": "enumeration",
+      "required": true
+    },
+    "reason": {
+      "required": true,
+      "type": "string",
+      "unique": true
+    }
+  }
+}

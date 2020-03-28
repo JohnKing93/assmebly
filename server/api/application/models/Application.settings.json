@@ -1,0 +1,40 @@
+{
+  "connection": "default",
+  "collectionName": "applications",
+  "info": {
+    "name": "application",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "position": {
+      "model": "position",
+      "via": "applications"
+    },
+    "applicant": {
+      "model": "user",
+      "via": "applications",
+      "plugin": "users-permissions"
+    },
+    "member": {
+      "model": "member"
+    },
+    "status": {
+      "enum": [
+        "Pending",
+        "Approved",
+        "Rejected"
+      ],
+      "type": "enumeration",
+      "required": true
+    },
+    "reason": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

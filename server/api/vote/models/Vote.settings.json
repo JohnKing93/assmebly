@@ -1,0 +1,27 @@
+{
+  "connection": "default",
+  "collectionName": "votes",
+  "info": {
+    "name": "vote",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "vote": {
+      "type": "boolean",
+      "required": true
+    },
+    "voter": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "idea": {
+      "model": "idea",
+      "via": "votes"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "connection": "default",
+  "collectionName": "tests",
+  "info": {
+    "name": "test",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "test": {
+      "type": "string"
+    }
+  }
+}

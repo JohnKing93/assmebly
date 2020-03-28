@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "interests",
+  "info": {
+    "name": "interest",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "summary": {
+      "required": true,
+      "type": "string"
+    },
+    "interested": {
+      "model": "user",
+      "via": "interests",
+      "plugin": "users-permissions"
+    },
+    "positions": {
+      "collection": "position",
+      "via": "requirements"
+    }
+  }
+}

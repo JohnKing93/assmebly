@@ -1,0 +1,48 @@
+{
+  "connection": "default",
+  "collectionName": "openings",
+  "info": {
+    "name": "position",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "summary": {
+      "required": true,
+      "type": "string"
+    },
+    "description": {
+      "required": true,
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "required": true
+    },
+    "project": {
+      "model": "project",
+      "via": "positions"
+    },
+    "timeCommitment": {
+      "type": "integer",
+      "required": true
+    },
+    "requirements": {
+      "collection": "interest",
+      "via": "positions",
+      "dominant": true
+    },
+    "members": {
+      "collection": "member",
+      "via": "positions"
+    },
+    "applications": {
+      "collection": "application",
+      "via": "position"
+    }
+  }
+}

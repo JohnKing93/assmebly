@@ -1,0 +1,39 @@
+{
+  "connection": "default",
+  "collectionName": "ideas",
+  "info": {
+    "name": "idea",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "summary": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "creator": {
+      "model": "user",
+      "plugin": "users-permissions"
+    },
+    "votes": {
+      "collection": "vote",
+      "via": "idea"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "idea"
+    },
+    "project": {
+      "model": "project",
+      "via": "ideas"
+    }
+  }
+}

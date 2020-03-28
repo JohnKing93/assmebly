@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "incentivs",
+  "info": {
+    "name": "incentive",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "summary": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "required": true,
+      "type": "text"
+    },
+    "hours": {
+      "type": "integer",
+      "required": true
+    },
+    "active": {
+      "type": "boolean",
+      "required": true
+    },
+    "redemptions": {
+      "collection": "redemption",
+      "via": "incentive"
+    }
+  }
+}
